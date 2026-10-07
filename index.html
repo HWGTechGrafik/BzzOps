@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <!-- Wird von "flutter build web --base-href /ordner/" ersetzt (Hosting im Unterordner). -->
+  <base href="/BzzOps/">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="description" content="BzzOps – Bienenstock-Wartung by HWG.Tech">
+  <meta name="robots" content="noindex, nofollow">
+  <title>BzzOps · by HWG.Tech</title>
+
+  <!-- Installierbare App (Handy/Tablet/PC): Vollbild über „Zum Home-Bildschirm" bzw. „Als App installieren" -->
+  <meta name="theme-color" content="#18aa4c">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="default">
+  <meta name="apple-mobile-web-app-title" content="BzzOps">
+  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="manifest" href="manifest.json">
+
+  <style>
+    html, body { margin: 0; height: 100%; background: #f5f1ea; }
+    @media (prefers-color-scheme: dark) { html, body { background: #15171a; } }
+    #ladehinweis { position: fixed; inset: 0; display: flex; flex-direction: column; align-items: center;
+      justify-content: center; gap: 14px; font-family: Helvetica, Arial, sans-serif; color: #128a42; }
+    #ladehinweis img { width: 88px; height: 88px; border-radius: 20px; box-shadow: 0 4px 14px rgba(0,0,0,.18); }
+    #ladehinweis .name { font-size: 22px; font-weight: bold; }
+    #ladehinweis .klein { font-size: 13px; opacity: .75; }
+  </style>
+  <!-- Cloud-Sync (Datei-Schnittstelle des Browsers bzw. der Windows-App) -->
+  <script src="sync.js"></script>
+</head>
+<body>
+  <div id="ladehinweis">
+    <img src="icons/Icon-192.png" alt="">
+    <div class="name">BzzOps</div>
+    <div class="klein">by HWG.Tech · wird geladen …</div>
+  </div>
+  <script>
+    // Ladehinweis weg, sobald Flutter das erste Bild zeichnet; die Windows-App bekommt „bereit".
+    window.addEventListener("flutter-first-frame", function () {
+      var l = document.getElementById("ladehinweis");
+      if (l) l.remove();
+      if (window.bzzHuelle) window.bzzHuelle.melden({ typ: "bereit" });
+    });
+    // Offline-Betrieb (nur gehostet, nicht in der Windows-App – die bringt alles mit).
+    if ("serviceWorker" in navigator && !(window.chrome && window.chrome.webview) &&
+        (location.protocol === "https:" || location.hostname === "localhost")) {
+      window.addEventListener("load", function () {
+        navigator.serviceWorker.register("sw.js").catch(function () { /* ohne Offline-Modus weiter */ });
+      });
+    }
+  </script>
+  <script src="flutter_bootstrap.js" async></script>
+</body>
+</html>
