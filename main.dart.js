@@ -62218,7 +62218,7 @@ i.toString
 s=A.W(i,B.S,0.25)
 s.toString
 s=A.a([i,s],t.t_)
-i=A.YC(A.d4(20),A.bqA("assets/biene.png",84,84),B.dB)
+i=A.YC(A.d4(20),A.bqA("assets/logo.png",84,84),B.dB)
 r=A.ae("by HWG.Tech",k,k,k,k,A.c5(k,k,B.L.jV(0.75),k,k,k,k,k,k,k,k,13,k,k,k,k,k,!0,k,k,k,k,k,k,k,k),k,k,k)
 q=t.n
 p=t.B
@@ -68166,7 +68166,7 @@ return A.c5(s,s,s,s,s,s,s,s,s,s,s,11.5,s,s,a.n(0,B.ak)?B.bw:B.bv,s,s,!0,s,-0.2,s
 $S:54}
 A.SJ.prototype={
 G(a){var s=null,r=this.c,q=r*0.24,p=A.d4(q)
-return A.dq(s,A.YC(A.d4(q),A.bqA("assets/biene.png",r,r),B.dB),B.V,s,s,new A.d7(s,s,s,p,B.beb,s,B.bd),s,s,s,s,s,s,s)}}
+return A.dq(s,A.YC(A.d4(q),A.bqA("assets/logo.png",r,r),B.dB),B.V,s,s,new A.d7(s,s,s,p,B.beb,s,B.bd),s,s,s,s,s,s,s)}}
 A.ajK.prototype={
 G(a){var s,r,q,p,o,n,m,l,k,j,i,h,g=this,f=null,e=J.w(J.w(a.a8(t.U).f.b,"imkerei"),"name"),d=e==null?"":J.q(e),c=B.L.jV(0.72)
 e=g.d
