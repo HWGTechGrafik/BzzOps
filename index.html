@@ -42,6 +42,18 @@
     <div class="klein">by HWG.Tech · wird geladen …</div>
   </div>
   <script>
+    // Flutter ersetzt beim Start das Viewport-Tag durch sein eigenes – ohne „viewport-fit=cover".
+    // Ohne diese Angabe meldet iOS keinen Rand für den Home-Balken (env(safe-area-inset-*) = 0)
+    // und die Leiste unten rutscht in die abgerundeten Ecken. Daher immer wieder ergänzen.
+    (function () {
+      function viewportErgaenzen() {
+        document.querySelectorAll('meta[name="viewport"]').forEach(function (m) {
+          if (m.content.indexOf("viewport-fit=cover") < 0) m.content = m.content + ", viewport-fit=cover";
+        });
+      }
+      new MutationObserver(viewportErgaenzen).observe(document.head, { childList: true, subtree: true, attributes: true, attributeFilter: ["content"] });
+      viewportErgaenzen();
+    })();
     // Ladehinweis weg, sobald Flutter das erste Bild zeichnet; die Windows-App bekommt „bereit".
     window.addEventListener("flutter-first-frame", function () {
       var l = document.getElementById("ladehinweis");
