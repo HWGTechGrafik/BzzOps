@@ -4,7 +4,7 @@
   <!-- Wird von "flutter build web --base-href /ordner/" ersetzt (Hosting im Unterordner). -->
   <base href="/BzzOps/">
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content">
   <meta name="description" content="BzzOps – Bienenstock-Wartung by HWG.Tech">
   <meta name="robots" content="noindex, nofollow">
   <title>BzzOps · by HWG.Tech</title>
@@ -45,14 +45,28 @@
     // Flutter ersetzt beim Start das Viewport-Tag durch sein eigenes – ohne „viewport-fit=cover".
     // Ohne diese Angabe meldet iOS keinen Rand für den Home-Balken (env(safe-area-inset-*) = 0)
     // und die Leiste unten rutscht in die abgerundeten Ecken. Daher immer wieder ergänzen.
+    // „interactive-widget=resizes-content": Android-Chrome verkleinert beim Öffnen der Tastatur die
+    // Seite, statt sie nach oben zu schieben. Sonst schiebt Chrome die Seite UND Flutter den Dialog
+    // über die Tastatur – Titel und das Feld, in das man tippt, verschwinden oben aus dem Bild.
     (function () {
       function viewportErgaenzen() {
         document.querySelectorAll('meta[name="viewport"]').forEach(function (m) {
           if (m.content.indexOf("viewport-fit=cover") < 0) m.content = m.content + ", viewport-fit=cover";
+          if (m.content.indexOf("interactive-widget") < 0) m.content = m.content + ", interactive-widget=resizes-content";
         });
       }
       new MutationObserver(viewportErgaenzen).observe(document.head, { childList: true, subtree: true, attributes: true, attributeFilter: ["content"] });
       viewportErgaenzen();
+      // Sicherheitsnetz (Android): falls der Browser die Seite trotzdem verschiebt, sofort zurück –
+      // Flutter zeichnet immer ab der Oberkante, verschoben passt nichts mehr zusammen.
+      var vv = window.visualViewport;
+      if (vv && /Android/i.test(navigator.userAgent)) {
+        var zurueck = function () {
+          if (vv.offsetTop > 0 || window.scrollY > 0) window.scrollTo(0, 0);
+        };
+        vv.addEventListener("scroll", zurueck);
+        vv.addEventListener("resize", zurueck);
+      }
     })();
     // Ladehinweis weg, sobald Flutter das erste Bild zeichnet; die Windows-App bekommt „bereit".
     window.addEventListener("flutter-first-frame", function () {
