@@ -73073,7 +73073,7 @@ if(b==null)b=""
 l.push(new A.ag(B.fA,A.aX(A.a([new A.fp(1,B.c6,c,a0),new A.Sv("Anzahl "+e,b,new A.bji(a,g),150,a0)],m),B.Q,a0,B.A,B.J,0,a0),new A.bT("g"+f,i)))}l.push(new A.dP(A.a([A.bg(!1,170,!0,"z. B. 750",a0,"Andere Gr\xf6\xdfe (g)",a0,!1,!1,new A.bjj(a),a0,a0,!1,a.ax,!1,1),A.iJ(B.eA,B.bFH,new A.bjk(a,a5),a0)],m),a0))
 l.push(new A.hS(n===0?"Noch keine Gl\xe4ser eingetragen.":"Abgef\xfcllt: "+n+" Gl\xe4ser = "+A.bs(p,2)+" kg aus losem Honig",B.lT,a0))
 l.push(B.fh)
-l.push(A.aX(A.a([A.bg(!1,200,!1,"0",a0,"Verlust/Rest (kg)",a0,!1,!1,new A.bjl(a),a0,a0,!1,a.gSp(),!0,1),B.kJ,B.aom],m),B.Q,a0,B.A,B.J,0,a0))
+l.push(A.aX(A.a([A.bg(!1,180,!1,"0",a0,"Verlust/Rest (kg)",a0,!1,!1,new A.bjl(a),a0,a0,!1,a.gSp(),!0,1),B.kJ,B.aom],m),B.Q,a0,B.A,B.J,0,a0))
 if(p+o>a3&&!a2){k=A.bs(a3,2)
 j=J.l(a1,"name")
 j=j==null?"":J.j(j)
